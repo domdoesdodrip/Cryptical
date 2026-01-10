@@ -20,5 +20,11 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 # Update 1.1
 
--Switch myturtle to croxyproxy
+-Switch myturtle to croxyproxy due to safety reasons
+
+# Update 1.2
+
+-fix croxy proxy errors (now opens in an aboutblank tab)
+
+-slight ui changes
 
