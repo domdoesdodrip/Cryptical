@@ -18,4 +18,7 @@ add search engine along with 1 gateway and 2 portals
 
 added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
+# Update 1.1
+
+-Switch myturtle to croxyproxy
 
