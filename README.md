@@ -28,3 +28,5 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 -slight ui changes
 
+-added star backround
+
