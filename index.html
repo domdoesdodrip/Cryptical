@@ -70,7 +70,7 @@
         </div>
     </header>
 
-    <div id="credits" class="inspiration-footer terminal-text opacity-50">Cryptical v1.0 // Portals Active</div>
+    <div id="credits" class="inspiration-footer terminal-text opacity-50">Cryptical v1.1 // Portals Recalibrated</div>
 
     <main class="flex-1 flex flex-col items-center justify-center relative px-4">
         <div id="ui-wrapper" class="flex flex-col items-center transition-all duration-700 w-full">
@@ -81,7 +81,7 @@
                 <button id="portal-launch-btn" onclick="launchTunnel()" class="main-input portal-btn py-4 px-8 rounded-full text-center terminal-text text-xs hidden-element">INITIATE PORTAL CONNECTION</button>
             </div>
 
-            <p class="mt-8 terminal-text text-[9px] text-purple-800 opacity-40 tracking-[0.5em]">ENCRYPTED GATEWAY // RELEASE V1.0</p>
+            <p class="mt-8 terminal-text text-[9px] text-purple-800 opacity-40 tracking-[0.5em]">ENCRYPTED GATEWAY // RELEASE 1.1</p>
         </div>
 
         <div id="frame-wrapper" class="absolute inset-0 hidden flex flex-col p-2 bg-[#0a0510] z-50">
@@ -135,11 +135,11 @@
                 gatewayStatus.innerText = '[ MODE: PORTAL 1 ]';
                 searchBox.classList.add('hidden-element');
                 portalBtn.classList.remove('hidden-element');
-                portalBtn.innerText = "LAUNCH MYTURTLE PORTAL";
+                portalBtn.innerText = "LAUNCH RAMMERHEAD PORTAL";
             } else if (activeMode === 'P1') {
                 activeMode = 'P2';
                 gatewayStatus.innerText = '[ MODE: PORTAL 2 ]';
-                portalBtn.innerText = "LAUNCH RAMMERHEAD PORTAL";
+                portalBtn.innerText = "LAUNCH CROXYPROXY PORTAL";
             } else {
                 activeMode = 'G1';
                 gatewayStatus.innerText = '[ MODE: GATEWAY 1 ]';
@@ -148,7 +148,6 @@
             }
         }
 
-        // Search Input Logic
         searchBox.addEventListener('keypress', (e) => {
             if (e.key === 'Enter' && activeMode === 'G1') {
                 const query = searchBox.value.trim();
@@ -159,7 +158,6 @@
             }
         });
 
-        // Panic Key Logic
         window.addEventListener('keydown', (e) => {
             if (e.key === "Escape" && !frameWrapper.classList.contains('hidden')) {
                 closeFrame();
@@ -175,16 +173,15 @@
                 finalUrl = "https://embeddrr.web.app/embed#" + url;
                 signalText.innerText = `GATEWAY_1 :: ${url}`;
             } else if (activeMode === 'P1') {
-                finalUrl = "https://myturtle.net/";
-                signalText.innerText = `PORTAL_1 :: MYTURTLE`;
-            } else if (activeMode === 'P2') {
                 finalUrl = "https://browser.rammerhead.org/";
-                signalText.innerText = `PORTAL_2 :: RAMMERHEAD`;
+                signalText.innerText = `PORTAL_1 :: RAMMERHEAD`;
+            } else if (activeMode === 'P2') {
+                finalUrl = "https://www.croxyproxy.com/";
+                signalText.innerText = `PORTAL_2 :: CROXYPROXY`;
             }
 
             mainFrame.src = finalUrl;
             
-            // Apply about:blank Cloak
             tabTitle.innerText = "about:blank";
             tabIcon.href = blankIcon;
 
@@ -203,11 +200,8 @@
 
         function closeFrame() {
             mainFrame.src = "";
-            
-            // Reset Tab back to Amethyst
             tabTitle.innerText = "Cryptical | Gateway";
             tabIcon.href = originalIcon;
-
             frameWrapper.classList.add('hidden');
             uiWrapper.classList.remove('hidden');
             setTimeout(() => { uiWrapper.classList.remove('opacity-0', 'scale-90'); }, 10);
@@ -219,5 +213,3 @@
     </script>
 </body>
 </html>
-
-
