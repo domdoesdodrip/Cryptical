@@ -34,22 +34,26 @@
         .portal-btn {
             cursor: pointer;
             background: linear-gradient(90deg, rgba(59, 7, 100, 0.4), rgba(168, 85, 247, 0.2));
+            border: 1px solid #3b0764;
         }
 
         .portal-btn:hover {
             background: rgba(168, 85, 247, 0.2);
             border-color: #a855f7;
-            letter-spacing: 0.4em;
+            letter-spacing: 0.3em;
         }
 
         #preset-menu { transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); background: rgba(15, 7, 25, 0.98); backdrop-filter: blur(20px); border-left: 1px solid #3b0764; z-index: 70; }
         #preset-menu.open { transform: translateX(0); }
         .preset-item { border: 1px solid transparent; transition: all 0.2s; cursor: pointer; }
         .preset-item:hover { background: rgba(168, 85, 247, 0.1); border-color: #4c1d95; color: #f3e8ff; padding-left: 1.5rem; }
+        
         .exit-btn { font-size: 13px; padding: 8px 16px; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 4px; color: #ef4444; transition: all 0.3s ease; }
         .exit-btn:hover { background: rgba(239, 68, 68, 0.1); border-color: #ef4444; text-shadow: 0 0 10px #ef4444; }
+        
         .secondary-btn { font-size: 10px; color: #a855f7; border: 1px solid rgba(168, 85, 247, 0.2); padding: 8px 12px; border-radius: 4px; transition: all 0.2s ease; cursor: pointer; }
         .secondary-btn:hover { background: rgba(168, 85, 247, 0.1); border-color: #a855f7; }
+        
         .inspiration-footer { position: fixed; bottom: 20px; left: 20px; font-size: 9px; color: #6b21a8; white-space: nowrap; pointer-events: none; z-index: 20; transition: opacity 0.4s ease; }
         .status-active { color: #22c55e; text-shadow: 0 0 10px rgba(34, 197, 94, 0.5); }
         .hidden-element { display: none !important; }
@@ -70,25 +74,27 @@
         </div>
     </header>
 
-    <div id="credits" class="inspiration-footer terminal-text opacity-50">Cryptical v1.1 // Portals Recalibrated</div>
+    <div id="credits" class="inspiration-footer terminal-text opacity-50">Cryptical v1.2 // Multi-Signal Protocol</div>
 
     <main class="flex-1 flex flex-col items-center justify-center relative px-4">
         <div id="ui-wrapper" class="flex flex-col items-center transition-all duration-700 w-full">
             <h1 class="cryptic-logo terminal-text text-center sm:text-8xl text-5xl">CRYPTICAL</h1>
             
-            <div id="input-container" class="w-full flex justify-center mt-4">
+            <div id="input-container" class="w-full flex flex-col items-center mt-4 gap-4">
                 <input type="text" id="search-box" placeholder="ENTER URL OR SEARCH QUERY" class="main-input search-field py-4 px-8 rounded-full text-center terminal-text text-xs" autocomplete="off">
-                <button id="portal-launch-btn" onclick="launchTunnel()" class="main-input portal-btn py-4 px-8 rounded-full text-center terminal-text text-xs hidden-element">INITIATE PORTAL CONNECTION</button>
+                
+                <div id="portal-controls" class="hidden-element flex flex-col items-center gap-4">
+                    <button id="portal-launch-btn" onclick="launchTunnel()" class="main-input portal-btn py-4 px-12 rounded-full text-center terminal-text text-xs">INITIATE PORTAL</button>
+                    <p id="portal-info" class="terminal-text text-[9px] text-purple-600 opacity-60"></p>
+                </div>
             </div>
-
-            <p class="mt-8 terminal-text text-[9px] text-purple-800 opacity-40 tracking-[0.5em]">ENCRYPTED GATEWAY // RELEASE 1.1</p>
         </div>
 
         <div id="frame-wrapper" class="absolute inset-0 hidden flex flex-col p-2 bg-[#0a0510] z-50">
             <div class="flex justify-between items-center p-3">
                 <div class="flex gap-2">
                     <button onclick="closeFrame()" class="terminal-text text-[10px] text-purple-600 hover:text-purple-300 transition-colors px-3 py-2">[ EXIT_TUNNEL ]</button>
-                    <button onclick="reloadFrame()" class="terminal-text text-[10px] text-purple-600 hover:text-purple-300 transition-colors px-3 py-2">[ RELOAD ]</button>
+                    <button onclick="reloadFrame()" class="terminal-text text-[10px] text-purple-600 hover:text-purple-300 transition-colors px-3 py-2">[ RESTART ]</button>
                 </div>
                 <div id="current-signal" class="terminal-text text-[9px] text-purple-900 truncate max-w-[40%]"></div>
                 <div class="w-[80px]"></div> 
@@ -99,15 +105,12 @@
 
     <div id="preset-menu" class="fixed right-0 top-0 h-full w-72 p-8 flex flex-col gap-4 shadow-2xl">
         <div class="flex justify-between items-center mb-8 border-b border-purple-900/50 pb-4">
-            <span class="terminal-text text-xs text-purple-500">SIGNALS</span>
+            <span class="terminal-text text-xs text-purple-500">QUICK SIGNALS</span>
             <button onclick="toggleMenu()" class="text-purple-700 hover:text-purple-300">✕</button>
         </div>
         <button onclick="launchTunnel('https://www.bing.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">Bing</button>
-        <button onclick="launchTunnel('https://discord.com/app')" class="preset-item terminal-text text-left text-xs p-3 rounded">Discord</button>
         <button onclick="launchTunnel('https://youtube.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">YouTube</button>
-        <button onclick="launchTunnel('https://instagram.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">Instagram</button>
-        <button onclick="launchTunnel('https://tiktok.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">TikTok</button>
-        <button onclick="launchTunnel('https://reddit.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">Reddit</button>
+        <button onclick="launchTunnel('https://discord.com')" class="preset-item terminal-text text-left text-xs p-3 rounded">Discord</button>
     </div>
 
     <div id="menu-overlay" onclick="toggleMenu()" class="fixed inset-0 bg-black/70 hidden z-[65] backdrop-blur-sm"></div>
@@ -115,6 +118,8 @@
     <script>
         const searchBox = document.getElementById('search-box');
         const portalBtn = document.getElementById('portal-launch-btn');
+        const portalControls = document.getElementById('portal-controls');
+        const portalInfo = document.getElementById('portal-info');
         const uiWrapper = document.getElementById('ui-wrapper');
         const frameWrapper = document.getElementById('frame-wrapper');
         const mainFrame = document.getElementById('main-frame');
@@ -132,56 +137,49 @@
         function toggleGateway() {
             if (activeMode === 'G1') {
                 activeMode = 'P1';
-                gatewayStatus.innerText = '[ MODE: PORTAL 1 ]';
+                gatewayStatus.innerText = '[ MODE: RAMMERHEAD ]';
+                gatewayStatus.className = 'terminal-text secondary-btn text-blue-400 border-blue-400/20';
                 searchBox.classList.add('hidden-element');
-                portalBtn.classList.remove('hidden-element');
-                portalBtn.innerText = "LAUNCH RAMMERHEAD PORTAL";
+                portalControls.classList.remove('hidden-element');
+                portalInfo.innerText = "SIGNAL: INTERNAL BROWSER (SAME TAB)";
             } else if (activeMode === 'P1') {
                 activeMode = 'P2';
-                gatewayStatus.innerText = '[ MODE: PORTAL 2 ]';
-                portalBtn.innerText = "LAUNCH CROXYPROXY PORTAL";
+                gatewayStatus.innerText = '[ MODE: CROXYPROXY ]';
+                gatewayStatus.className = 'terminal-text secondary-btn text-yellow-400 border-yellow-400/20';
+                portalInfo.innerText = "SIGNAL: EXTERNAL CLOAK (OPENS NEW TAB)";
             } else {
                 activeMode = 'G1';
-                gatewayStatus.innerText = '[ MODE: GATEWAY 1 ]';
+                gatewayStatus.innerText = '[ MODE: GATEWAY ]';
+                gatewayStatus.className = 'terminal-text secondary-btn status-active';
                 searchBox.classList.remove('hidden-element');
-                portalBtn.classList.add('hidden-element');
+                portalControls.classList.add('hidden-element');
             }
         }
 
         searchBox.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && activeMode === 'G1') {
-                const query = searchBox.value.trim();
-                if (!query) return;
-                const urlPattern = /^(https?:\/\/)?([\w\d-]+\.)+\w{2,}(\/.*)?$/i;
-                let targetUrl = urlPattern.test(query) ? (query.startsWith('http') ? query : `https://${query}`) : `https://www.bing.com/search?q=${encodeURIComponent(query)}`;
-                launchTunnel(targetUrl);
-            }
-        });
-
-        window.addEventListener('keydown', (e) => {
-            if (e.key === "Escape" && !frameWrapper.classList.contains('hidden')) {
-                closeFrame();
-            }
+            if (e.key === 'Enter') launchTunnel(searchBox.value.trim());
         });
 
         function launchTunnel(url = "") {
             presetMenu.classList.remove('open');
             menuOverlay.classList.add('hidden');
-            let finalUrl = "";
 
-            if (activeMode === 'G1') {
-                finalUrl = "https://embeddrr.web.app/embed#" + url;
-                signalText.innerText = `GATEWAY_1 :: ${url}`;
-            } else if (activeMode === 'P1') {
-                finalUrl = "https://browser.rammerhead.org/";
-                signalText.innerText = `PORTAL_1 :: RAMMERHEAD`;
-            } else if (activeMode === 'P2') {
-                finalUrl = "https://www.croxyproxy.com/";
-                signalText.innerText = `PORTAL_2 :: CROXYPROXY`;
+            if (activeMode === 'P2') {
+                const win = window.open('about:blank', '_blank');
+                win.document.body.style.margin = '0';
+                win.document.body.style.height = '100vh';
+                win.document.title = "Google Docs"; 
+                const iframe = win.document.createElement('iframe');
+                iframe.style.border = 'none'; iframe.style.width = '100%'; iframe.style.height = '100%';
+                iframe.src = "https://www.croxyproxy.com/";
+                win.document.body.appendChild(iframe);
+                return;
             }
 
-            mainFrame.src = finalUrl;
+            let finalUrl = (activeMode === 'P1') ? "https://browser.rammerhead.org/" : "https://embeddrr.web.app/embed#" + url;
+            signalText.innerText = (activeMode === 'P1') ? "PORTAL :: RAMMERHEAD" : `SIGNAL :: ${url}`;
             
+            mainFrame.src = finalUrl;
             tabTitle.innerText = "about:blank";
             tabIcon.href = blankIcon;
 
@@ -195,7 +193,7 @@
         function reloadFrame() {
             const currentSrc = mainFrame.src;
             mainFrame.src = '';
-            mainFrame.src = currentSrc;
+            setTimeout(() => { mainFrame.src = currentSrc; }, 50);
         }
 
         function closeFrame() {
