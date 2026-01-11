@@ -1,3 +1,6 @@
+we only have 3 sites, https://crypticality.netlify.app/, https://cryptical.vercel.app/ & https://cryptical.wtf
+ANY other sites are not official and you should not trust them
+
 # Released!
 
 -Quick Exit returns you to Google.com to ensure you can hide the website easier.
@@ -29,4 +32,8 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 -slight ui changes
 
 -added star backround
+
+# New Domain!
+
+https://cryptical.wtf
 
