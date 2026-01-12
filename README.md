@@ -45,14 +45,14 @@ https://cryptical.wtf
 
 # We dont talk about 1.4...
 
-# Big Update 1.5 coming soon
+# Big Update 1.5 
 
 -add animations to popups
 
--include github + mirror sites
+-include github 
 
 -better site servers
 
--swap croxyproxy to Interstellar Proxy
+-had to remove croxy proxy 
 
 -add selection of proxy to use inside of games
