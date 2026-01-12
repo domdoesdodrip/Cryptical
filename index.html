@@ -5,63 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cryptical | Entry</title>
     <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/8810/8810461.png">
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;700&display=swap" rel="stylesheet"/>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         canvas#stars { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
-        body { 
-            background: #0a0510; 
-            color: #d8b4fe; 
-            font-family: 'Space Grotesk', sans-serif; 
-            height: 100vh; 
-            margin: 0; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            overflow: hidden;
-        }
+        body { background: #0a0510; color: #d8b4fe; font-family: 'Space Grotesk', sans-serif; height: 100vh; margin: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+        .btn-container { position: relative; z-index: 10; display: flex; flex-direction: column; align-items: center; gap: 1rem; }
 
         .enter-btn {
-            position: relative;
-            z-index: 10;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 1.25rem;
-            letter-spacing: 0.3em;
-            padding: 1.5rem 3rem;
-            background: transparent;
-            border: 1px solid #a855f7;
-            color: #a855f7;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-transform: uppercase;
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+            font-family: 'JetBrains Mono', monospace; font-size: 1.25rem; letter-spacing: 0.3em;
+            padding: 1.5rem 3.5rem; background: transparent; border: 1px solid #a855f7; color: #a855f7;
+            border-radius: 4px; cursor: pointer; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-transform: uppercase; box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
         }
+        .enter-btn:hover { background: #a855f7; color: #0a0510; box-shadow: 0 0 50px rgba(168, 85, 247, 0.6); transform: scale(1.05); }
 
-        .enter-btn:hover {
-            background: #a855f7;
-            color: #0a0510;
-            box-shadow: 0 0 50px rgba(168, 85, 247, 0.6);
-            transform: scale(1.05);
+        .mirror-btn {
+            font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; letter-spacing: 0.2em;
+            padding: 0.75rem 2rem; background: transparent; border: 1px solid rgba(168, 85, 247, 0.3); color: rgba(168, 85, 247, 0.6);
+            border-radius: 4px; cursor: pointer; transition: all 0.3s ease; text-transform: uppercase;
         }
+        .mirror-btn:hover { border-color: #a855f7; color: #a855f7; background: rgba(168, 85, 247, 0.05); }
 
-        .version-tag {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 10px;
-            opacity: 0.4;
-            letter-spacing: 0.1em;
+        /* MODAL STYLE */
+        #mirror-modal { 
+            position: fixed; inset: 0; background: rgba(10, 5, 16, 0.95); 
+            z-index: 100; display: none; align-items: center; justify-content: center; 
+            backdrop-filter: blur(10px); animation: fadeIn 0.3s ease;
         }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .modal-content { 
+            background: #110a1f; border: 1px solid #3b0764; padding: 2rem; 
+            border-radius: 8px; max-width: 450px; width: 90%; text-align: center;
+            box-shadow: 0 0 40px rgba(0,0,0,0.5);
+        }
+        .mirror-link { 
+            display: block; padding: 10px; margin: 8px 0; background: rgba(255,255,255,0.03); 
+            border: 1px solid #3b0764; border-radius: 4px; color: #d8b4fe; 
+            text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+        .mirror-link:hover { border-color: #a855f7; background: rgba(168, 85, 247, 0.1); }
+
+        .warning-text { font-size: 11px; color: #ef4444; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; line-height: 1.4; opacity: 0.8; }
+        .version-tag { position: fixed; bottom: 20px; left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.4; }
     </style>
 </head>
 <body>
     <canvas id="stars"></canvas>
 
-    <button id="entry-button" class="enter-btn">
-        ENTER CRYPTICAL
-    </button>
+    <div class="btn-container">
+        <button id="entry-button" class="enter-btn">ENTER CRYPTICAL</button>
+        <button onclick="toggleModal(true)" class="mirror-btn">MIRRORS</button>
+    </div>
+
+    <div id="mirror-modal">
+        <div class="modal-content">
+            <h2 class="terminal-text text-purple-400 mb-4 font-bold">OFFICIAL MIRRORS</h2>
+            
+            <a href="https://cryptical.wtf" class="mirror-link">CRYPTICAL.WTF</a>
+            <a href="https://crypticality.netlify.app" class="mirror-link">CRYPTICALITY.NETLIFY.APP</a>
+            <a href="https://cryptical.vercel.app" class="mirror-link">CRYPTICAL.VERCEL.APP</a>
+
+            <p class="warning-text">
+                [ SECURITY WARNING ]<br>
+                ANY OTHER SITES ARE NOT OFFICIAL AND YOU SHOULD NOT TRUST THEM.
+            </p>
+
+            <button onclick="toggleModal(false)" class="mt-6 text-[10px] text-purple-700 hover:text-purple-400 terminal-text underline cursor-pointer">[ CLOSE ]</button>
+        </div>
+    </div>
 
     <div class="version-tag">CRYPTICAL v1.5 // ENTRY_NODE</div>
 
@@ -90,15 +105,13 @@
         }
         draw();
 
-        // --- DYNAMIC ROUTING LOGIC ---
-        const enterBtn = document.getElementById('entry-button');
+        // --- LOGIC ---
+        function toggleModal(show) {
+            document.getElementById('mirror-modal').style.display = show ? 'flex' : 'none';
+        }
 
-        enterBtn.addEventListener('click', () => {
-            const currentHost = window.location.origin;
-            
-            // Logic: Take current origin and append /home
-            // This covers .wtf, netlify, and vercel automatically
-            window.location.href = currentHost + "/home";
+        document.getElementById('entry-button').addEventListener('click', () => {
+            window.location.href = window.location.origin + "/home";
         });
     </script>
 </body>
