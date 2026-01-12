@@ -37,8 +37,12 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 https://cryptical.wtf
 
-# Small update 1.2.1
+# Update 1.3
 
 -add games
 
 -add discord
+
+# Update 1.4
+
+-add selection of proxy to use inside of games
