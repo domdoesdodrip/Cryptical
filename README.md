@@ -37,3 +37,8 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 https://cryptical.wtf
 
+# Small update 1.2.1
+
+-add games
+
+-add discord
