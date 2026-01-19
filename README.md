@@ -1,4 +1,4 @@
-we only have 3 sites, https://crypticality.netlify.app/, https://cryptical.vercel.app/ & https://cryptical.wtf/
+we only have 3 sites, https://crypticality.netlify.app/, https://cryptical.vercel.app/
 ANY other sites are not official and you should not trust them
 
 # Released!
@@ -33,9 +33,6 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 -added star backround
 
-# New Domain!
-
-https://cryptical.wtf
 
 # Update 1.3
 
@@ -56,3 +53,5 @@ https://cryptical.wtf
 -had to remove croxy proxy 
 
 -add selection of proxy to use inside of games
+
+# Remove .wtf domain for another project
