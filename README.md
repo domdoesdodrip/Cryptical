@@ -1,4 +1,4 @@
-we only have 3 sites, https://crypticality.netlify.app/, https://crypticalunblocker.vercel.app
+we only have 2 sites, https://crypticality.netlify.app/, https://crypticalunblocker.vercel.app
 ANY other sites are not official and you should not trust them
 
 # Released!
