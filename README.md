@@ -54,4 +54,6 @@ added signal presets (Discord, YouTube, Bing, Instagram, Tiktok and reddit)
 
 -add selection of proxy to use inside of games
 
-# Remove .wtf domain for another project
+# Site update
+
+-Remove .wtf domain for another project
