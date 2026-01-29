@@ -28,28 +28,26 @@
         }
         .mirror-btn:hover { border-color: #a855f7; color: #a855f7; background: rgba(168, 85, 247, 0.05); }
 
-        /* MODAL STYLE */
         #mirror-modal { 
             position: fixed; inset: 0; background: rgba(10, 5, 16, 0.95); 
             z-index: 100; display: none; align-items: center; justify-content: center; 
-            backdrop-filter: blur(10px); animation: fadeIn 0.3s ease;
+            backdrop-filter: blur(10px);
         }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         .modal-content { 
             background: #110a1f; border: 1px solid #3b0764; padding: 2rem; 
             border-radius: 8px; max-width: 450px; width: 90%; text-align: center;
-            box-shadow: 0 0 40px rgba(0,0,0,0.5);
         }
+
         .mirror-link { 
             display: block; padding: 10px; margin: 8px 0; background: rgba(255,255,255,0.03); 
             border: 1px solid #3b0764; border-radius: 4px; color: #d8b4fe; 
             text-decoration: none; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem;
-            transition: all 0.2s;
         }
+
         .mirror-link:hover { border-color: #a855f7; background: rgba(168, 85, 247, 0.1); }
 
-        .warning-text { font-size: 11px; color: #ef4444; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; line-height: 1.4; opacity: 0.8; }
+        .warning-text { font-size: 11px; color: #ef4444; margin-top: 1.5rem; font-family: 'JetBrains Mono', monospace; opacity: 0.8; }
         .version-tag { position: fixed; bottom: 20px; left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 10px; opacity: 0.4; }
     </style>
 </head>
@@ -63,17 +61,17 @@
 
     <div id="mirror-modal">
         <div class="modal-content">
-            <h2 class="terminal-text text-purple-400 mb-4 font-bold">OFFICIAL MIRRORS</h2>
-            
+            <h2 class="text-purple-400 mb-4 font-bold">OFFICIAL MIRRORS</h2>
+            <a href="https://domdoesdodrip.github.io/CrypticalUnblocker/" class="mirror-link">GITHUB MIRROR</a>
             <a href="https://crypticality.netlify.app" class="mirror-link">CRYPTICALITY.NETLIFY.APP</a>
-            <a href="https://cryptical.vercel.app" class="mirror-link">CRYPTICALUNBLOCKER.VERCEL.APP</a>
+            <a href="https://cryptical.vercel.app" class="mirror-link">CRYPTICAL.VERCEL.APP</a>
 
             <p class="warning-text">
                 [ SECURITY WARNING ]<br>
-                ANY OTHER SITES ARE NOT OFFICIAL AND YOU SHOULD NOT TRUST THEM.
+                ANY OTHER SITES ARE NOT OFFICIAL
             </p>
 
-            <button onclick="toggleModal(false)" class="mt-6 text-[10px] text-purple-700 hover:text-purple-400 terminal-text underline cursor-pointer">[ CLOSE ]</button>
+            <button onclick="toggleModal(false)" class="mt-6 text-[10px] text-purple-400 underline">[ CLOSE ]</button>
         </div>
     </div>
 
@@ -84,35 +82,49 @@
         const canvas = document.getElementById("stars");
         const ctx = canvas.getContext("2d");
         let w, h, particles;
-        function resize() { 
-            w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; 
-            particles = Array.from({length: 100}, () => ({ 
-                x: Math.random() * w, y: Math.random() * h, 
-                size: Math.random() * 2 + 0.5, speedY: Math.random() * 0.2 + 0.05, 
-                opacity: Math.random() * 0.5 + 0.2, hue: 270 
-            })); 
+
+        function resize() {
+            w = canvas.width = window.innerWidth;
+            h = canvas.height = window.innerHeight;
+            particles = Array.from({ length: 100 }, () => ({
+                x: Math.random() * w,
+                y: Math.random() * h,
+                size: Math.random() * 2 + 0.5,
+                speedY: Math.random() * 0.2 + 0.05,
+                opacity: Math.random() * 0.5 + 0.2,
+                hue: 270
+            }));
         }
-        window.addEventListener("resize", resize); resize();
-        function draw() { 
-            ctx.clearRect(0, 0, w, h); 
-            particles.forEach(p => { 
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); 
-                ctx.fillStyle = `hsla(${p.hue},70%,70%,${p.opacity})`; ctx.fill(); 
-                p.y+=p.speedY; if(p.y>h) p.y=0; 
-            }); 
-            requestAnimationFrame(draw); 
+
+        window.addEventListener("resize", resize);
+        resize();
+
+        function draw() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                ctx.fillStyle = `hsla(${p.hue},70%,70%,${p.opacity})`;
+                ctx.fill();
+                p.y += p.speedY;
+                if (p.y > h) p.y = 0;
+            });
+            requestAnimationFrame(draw);
         }
         draw();
 
-        // --- LOGIC ---
+        // --- MODAL ---
         function toggleModal(show) {
             document.getElementById('mirror-modal').style.display = show ? 'flex' : 'none';
         }
 
+        // --- ENTRY ROUTING (ALL HOSTS SAFE) ---
         document.getElementById('entry-button').addEventListener('click', () => {
-            window.location.href = window.location.origin + "/home";
+            const parts = window.location.pathname.split('/').filter(Boolean);
+            const isGithub = window.location.hostname.endsWith('github.io');
+            const base = isGithub && parts.length ? `/${parts[0]}` : '';
+            window.location.href = `${base}/home`;
         });
     </script>
 </body>
 </html>
-
